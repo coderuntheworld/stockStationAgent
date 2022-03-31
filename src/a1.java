@@ -18,6 +18,7 @@ public class a1 {
 
         File errorLog = new File("logs/stdErr.log");
         PrintStream printStream = new PrintStream(errorLog);
+        String err = "";
 
         try {
             Scanner file = new Scanner(new File(args[0]));
