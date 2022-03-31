@@ -7,19 +7,13 @@ Student No.:    C3204936
 Program:        Bachelor of Software Engineering (Honours)
 */
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
-import java.util.Scanner;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class a1 {
 
     public static void main(String[] args) throws FileNotFoundException {
-
-        File errorLog = new File("logs/stdErr.log");
-        PrintStream printStream = new PrintStream(errorLog);
-        String err = "";
-
         try {
             Scanner file = new Scanner(new File(args[0]));
 
@@ -29,7 +23,15 @@ public class a1 {
             System.out.println("Sorted list");
 
         } catch (Exception e){
-            e.printStackTrace(printStream);
+            // Error Logging
+            String date = new SimpleDateFormat("yy-MM-dd HH.mm.ss").format(new Date());
+            FileOutputStream fileOutputStream = new FileOutputStream("logs/Error_" + date + ".txt");
+            PrintStream printStream = new PrintStream((fileOutputStream));
+            System.setErr(printStream);
+            System.err.append(date).append(" ").append(String.valueOf(e)).append("\n\n");
+            e.printStackTrace();
+            printStream.close();
         }
+
     }
 }
