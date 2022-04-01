@@ -1,7 +1,7 @@
-# A1
-Stock and Station Agent, Denman NSW
+# Stock and Station Agent, Denman NSW
 
 Isabella Andrews
+
 01 April 2022
 
 1. Objectives
@@ -17,14 +17,11 @@ Executing program:
 java A1 file.*
 
 Examples:
-java A1 sample_input.txt
+java A1 sample_input.txt,
 java A1 test.dat
 
 Files included:
 + A1.java
-+ a1_Report.pdf
-+ Adverse Circumstance_C3204936.pdf
-+ AssessmentCoverSheet_C3204936.pdf
 + ComparePoly.java
 + MyPolygons.java
 + Node.java
