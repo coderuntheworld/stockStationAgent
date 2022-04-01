@@ -8,4 +8,6 @@ Program:        Bachelor of Software Engineering (Honours)
 */
 
 public class MyPolygons {
+    public void append(Polygon createPolygon) {
+    }
 }
