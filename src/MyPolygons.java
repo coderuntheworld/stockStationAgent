@@ -56,6 +56,7 @@ public class MyPolygons {
     }
 
     public void insert(Polygon data) {
+
     }
 
     public Polygon next() {

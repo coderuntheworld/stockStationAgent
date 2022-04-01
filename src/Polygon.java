@@ -1,26 +1,25 @@
 public class Polygon implements ComparePoly {
 
     private Point point;
-    private Point[] points;
+    private Point[] pointsArray;
     private int pointTotal;
     private double closestPointToOrigin;
     private double area;
-    private double pointDistance;
 
     // Default Constructor
     public Polygon() {}
 
-    public Polygon(int points) {
-        this.points = new Point[points];
-        pointTotal = 0;
-        pointDistance = 0;
+    public Polygon(int point) {
+        this.pointsArray = new Point[point];
         calculateArea();
         calculateClosestPointToOrigin();
+        //System.out.println("Area: " + area);
+        //System.out.println("Point to Origin: " + closestPointToOrigin);
     }
 
     public void addPointsToPolygon(double x, double y){
         Point point = new Point(x, y);
-        points[pointTotal] = point;
+        pointsArray[pointTotal] = point;
         pointTotal++;
     }
 
@@ -28,14 +27,14 @@ public class Polygon implements ComparePoly {
         return area;
     }
 
-    public double getPointDistance(){
-        return pointDistance;
+    public double getClosestPointToOrigin() {
+        return closestPointToOrigin;
     }
 
     private void calculateArea() {
         for (int i = 0; i < pointTotal - 1; i++) {
-            double x = points[i].getX();
-            double y = points[i + 1].getY();
+            double x = pointsArray[i].getX();
+            double y = pointsArray[i + 1].getY();
             area += x + y * x - y;
         }
         // Ensure absolute value
@@ -47,8 +46,8 @@ public class Polygon implements ComparePoly {
 
     private void calculateClosestPointToOrigin(){
         for (int i = 0; i < pointTotal; i++){
-            if (points[i].getDistance() < closestPointToOrigin){
-                closestPointToOrigin = points[i].getDistance();
+            if (pointsArray[i].getDistance() < closestPointToOrigin){
+                closestPointToOrigin = pointsArray[i].getDistance();
             }
         }
     }
@@ -63,8 +62,8 @@ public class Polygon implements ComparePoly {
         double margin = 0.001;
         double marginDifference;
 
-        double distanceP1 = pointDistance;
-        double distanceP2 = p2.getPointDistance();
+        double distanceP1 = closestPointToOrigin;
+        double distanceP2 = p2.getClosestPointToOrigin();
 
         // Calculate the difference in area
         double areaDifference = areaP1 - areaP2;
@@ -90,12 +89,12 @@ public class Polygon implements ComparePoly {
 
     @Override
     public String toString() {
-        StringBuilder polyToString = new StringBuilder();
+        String polyToString = "[";
         for (int i = 0; i < pointTotal; i++){
-            polyToString.append(" ").append(points[i].toString());
+            polyToString += pointsArray[i].toString();
         }
-        polyToString.append("[").append(polyToString).append("] ");
-        polyToString.append(String.format("%6.2f", area));
-        return polyToString.toString();
+        polyToString += "]";
+        polyToString += String.format("%6.2f", area);
+        return polyToString;
     }
 }

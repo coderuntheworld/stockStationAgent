@@ -21,39 +21,41 @@ public class A1 {
         try {
             Scanner file = new Scanner(new File(args[0]));
             String input;
+            System.out.println("Unsorted list");
 
             while (file.hasNext()){
                 input = file.next();
 
                 if (input.equals("P")){
-                    int points = file.nextInt();
+                    int numPoints = file.nextInt();
                     int pointCount = 1;
                     int i = 0;
 
-                    Point[] newPoint = new Point[points];
-                    Polygon newPolygon = new Polygon(points);
+                    Polygon newPolygon = new Polygon(numPoints);
+                    // Point array here?
 
-                    while (pointCount <= points){
+                    while (pointCount <= numPoints){
                         double x = file.nextDouble();
                         double y = file.nextDouble();
-                        newPoint[i] = new Point(x, y);
                         newPolygon.addPointsToPolygon(x, y);
                         pointCount++;
                         i++;
                     }
                     myPolygons.append(newPolygon);
+                    System.out.println(newPolygon);
                 }
             }
+
+            System.out.println("\nSorted list");
 
             int listSize = myPolygons.getSize();
             for (int i = 0; i < listSize; i++){
                 Polygon tempPolygon = myPolygons.next();
                 sortedPolygons.reset(tempPolygon);
+                System.out.println(sortedPolygons);
             }
 
-            System.out.println("Unsorted list\n" + myPolygons + "\n");
-            System.out.println("Sorted list\n" + sortedPolygons + "\n\n");
-            System.out.println("End of Assignment.");
+            System.out.println("\nEnd of Assignment.");
 
         } catch (Exception e){
             // Error Logging

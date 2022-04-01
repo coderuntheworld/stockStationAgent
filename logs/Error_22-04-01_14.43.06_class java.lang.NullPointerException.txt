@@ -1,0 +1,6 @@
+22-04-01_14.43.06 java.lang.NullPointerException: Cannot invoke "Point.getDistance()" because "this.points[0]" is null
+
+java.lang.NullPointerException: Cannot invoke "Point.getDistance()" because "this.points[0]" is null
+	at Polygon.calculateClosestPointToOrigin(Polygon.java:51)
+	at Polygon.<init>(Polygon.java:18)
+	at A1.main(A1.java:31)

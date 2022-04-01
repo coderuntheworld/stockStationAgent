@@ -23,7 +23,7 @@ public class Point {
     public Point(double initX, double initY){
         x = initX;
         y = initY;
-        distance = 0;
+        // distance = 0;
     }
 
     // Getter and Setter methods
@@ -54,6 +54,6 @@ public class Point {
 
     @Override
     public String toString() {
-        return "(" + String.format("%6.2f", x) + " , " +  String.format("%6.2f", y) + ")";
+        return "(" + String.format("%6.2f", x) + "," +  String.format("%6.2f", y) + ")";
     }
 }
