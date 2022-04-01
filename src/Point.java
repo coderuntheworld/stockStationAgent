@@ -26,33 +26,34 @@ public class Point {
         distance = 0;
     }
 
-    // Setter and Getter methods
+    // Getter and Setter methods
     public void setX(double x) {
         this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
     }
 
     public double getX() {
         return x;
     }
 
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public double getY() {
         return y;
     }
 
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public double getDistance() {
-        distance = Math.sqrt(((x * x) + (y + y)));
+        distance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
         return distance;
     }
 
-    public String pointToString() {
+    @Override
+    public String toString() {
         return "(" + String.format("%6.2f", x) + " , " +  String.format("%6.2f", y) + ")";
     }
 }

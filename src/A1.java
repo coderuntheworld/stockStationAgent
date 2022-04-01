@@ -14,10 +14,13 @@ import java.util.*;
 public class A1 {
 
     public static void main(String[] args) throws FileNotFoundException {
+
+        MyPolygons myPolygons = new MyPolygons();
+        MyPolygons sortedPolygons = new MyPolygons();
+
         try {
             Scanner file = new Scanner(new File(args[0]));
             String input;
-            MyPolygons myPolygons = new MyPolygons();
 
             while (file.hasNext()){
                 input = file.next();
@@ -42,8 +45,15 @@ public class A1 {
                 }
             }
 
+            int listSize = myPolygons.getSize();
+            for (int i = 0; i < listSize; i++){
+                Polygon tempPolygon = myPolygons.next();
+                sortedPolygons.reset(tempPolygon);
+            }
+
             System.out.println("Unsorted list\n" + myPolygons + "\n");
-            System.out.println("Sorted list");
+            System.out.println("Sorted list\n" + sortedPolygons + "\n\n");
+            System.out.println("End of Assignment.");
 
         } catch (Exception e){
             // Error Logging
