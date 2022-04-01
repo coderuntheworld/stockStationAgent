@@ -9,7 +9,7 @@ Program:        Bachelor of Software Engineering (Honours)
 
 public class MyPolygons {
 
-    private Node sentinel;
+    private final Node sentinel;
     private Node current;
     private int size;
 
@@ -34,7 +34,6 @@ public class MyPolygons {
 
         // Set current to head
         current = sentinel.getNext();
-
         size++;
     }
 
@@ -51,42 +50,56 @@ public class MyPolygons {
 
         // Set current to head
         current = sentinel.getNext();
-
         size++;
     }
 
-    public void insert(Polygon data) {
-
+    public void insertInOrder(Polygon data, int maxSize)
+    {
+        current = sentinel.getNext();
+        int currSize = this.getSize();
+        if(size == 0){
+            this.prepend(data);
+        }
+        else
+        {
+            for(int i = 0; i < currSize; i++){
+                if(data.ComesBefore(current.getData())){
+                    Node tempNode = new Node(data);
+                    tempNode.setNext(current);
+                    tempNode.setPrevious(current.getPrevious());
+                    tempNode.getPrevious().setNext(tempNode);
+                    tempNode.getNext().setPrevious(tempNode);
+                    size++;
+                    return;
+                }
+                current = current.getNext();
+            }
+            this.append(data);
+        }
     }
 
     public Polygon next() {
+        current = current.getNext();
         return current.getData();
     }
 
-    public void reset(Polygon data) {
-        // Set current to head
-        current = sentinel.getNext();
-
-        if (current == sentinel){
-            prepend(data);
-        } else {
-            do {
-                if (current.getNext() == sentinel){
-                    next();
-                    append(data);
-                    return;
-                }
-                next();
-            } while (data.ComesBefore(current.getData()));
-        }
-        insert(data);
-    }
-
-    public void remove(Polygon data) {
+    public void reset() {
+        current = sentinel;
     }
 
     public int getSize(){
         return size;
+    }
+
+    @Override
+    public String toString() {
+        current = sentinel.getNext();
+        String myPolyToString = "";
+        do{
+            myPolyToString += current.getData() + "\n";
+            next();
+        }while(current.getData() != null);
+        return myPolyToString;
     }
 
 }

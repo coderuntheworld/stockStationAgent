@@ -21,7 +21,6 @@ public class A1 {
         try {
             Scanner file = new Scanner(new File(args[0]));
             String input;
-            System.out.println("Unsorted list");
 
             while (file.hasNext()){
                 input = file.next();
@@ -29,33 +28,35 @@ public class A1 {
                 if (input.equals("P")){
                     int numPoints = file.nextInt();
                     int pointCount = 1;
-                    int i = 0;
 
                     Polygon newPolygon = new Polygon(numPoints);
-                    // Point array here?
 
                     while (pointCount <= numPoints){
                         double x = file.nextDouble();
                         double y = file.nextDouble();
                         newPolygon.addPointsToPolygon(x, y);
                         pointCount++;
-                        i++;
                     }
+                    newPolygon.calculateArea();
                     myPolygons.append(newPolygon);
-                    System.out.println(newPolygon);
                 }
             }
 
-            System.out.println("\nSorted list");
-
-            int listSize = myPolygons.getSize();
-            for (int i = 0; i < listSize; i++){
+            // Sort polygons into increasing area order
+            int myPolygonsSize = myPolygons.getSize();
+            myPolygons.reset();
+            sortedPolygons.reset();
+            for (int i = 0; i < myPolygonsSize; i++){
                 Polygon tempPolygon = myPolygons.next();
-                sortedPolygons.reset(tempPolygon);
-                System.out.println(sortedPolygons);
+                sortedPolygons.insertInOrder(tempPolygon, myPolygonsSize);
             }
 
-            System.out.println("\nEnd of Assignment.");
+            // Print Unsorted and Sorted lists to console
+            System.out.println("Unsorted list");
+            System.out.println(myPolygons);
+            System.out.println("Sorted list");
+            System.out.println(sortedPolygons);
+            System.out.println("End of Assignment.");
 
         } catch (Exception e){
             // Error Logging
@@ -67,6 +68,5 @@ public class A1 {
             e.printStackTrace();
             printStream.close();
         }
-
     }
 }

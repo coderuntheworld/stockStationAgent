@@ -1,0 +1,5 @@
+22-04-01_22.47.43 java.lang.NullPointerException: Cannot invoke "Polygon.ComesBefore(Object)" because "data" is null
+
+java.lang.NullPointerException: Cannot invoke "Polygon.ComesBefore(Object)" because "data" is null
+	at MyPolygons.reset(MyPolygons.java:86)
+	at A1.main(A1.java:57)

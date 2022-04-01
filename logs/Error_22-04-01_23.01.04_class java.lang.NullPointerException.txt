@@ -1,0 +1,7 @@
+22-04-01_23.01.04 java.lang.NullPointerException: Cannot invoke "Polygon.toString()" because the return value of "MyPolygons.next()" is null
+
+java.lang.NullPointerException: Cannot invoke "Polygon.toString()" because the return value of "MyPolygons.next()" is null
+	at MyPolygons.toString(MyPolygons.java:124)
+	at java.base/java.lang.String.valueOf(String.java:4215)
+	at java.base/java.io.PrintStream.println(PrintStream.java:1047)
+	at A1.main(A1.java:50)

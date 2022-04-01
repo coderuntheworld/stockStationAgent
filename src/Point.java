@@ -23,7 +23,6 @@ public class Point {
     public Point(double initX, double initY){
         x = initX;
         y = initY;
-        // distance = 0;
     }
 
     // Getter and Setter methods

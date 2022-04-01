@@ -1,0 +1,5 @@
+22-04-01_23.23.47 java.lang.NullPointerException: Cannot invoke "Polygon.ComesBefore(Object)" because "tempData" is null
+
+java.lang.NullPointerException: Cannot invoke "Polygon.ComesBefore(Object)" because "tempData" is null
+	at MyPolygons.insertInOrder(MyPolygons.java:107)
+	at A1.main(A1.java:57)
