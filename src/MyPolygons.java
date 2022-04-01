@@ -23,7 +23,7 @@ public class MyPolygons {
 
     public void prepend(Polygon data){
         // Set current to head
-        current = sentinel.getNext();
+        getHead();
 
         Node tempNode = new Node(data);
         tempNode.setNext(current);
@@ -33,49 +33,32 @@ public class MyPolygons {
         sentinel.setNext(tempNode);
 
         // Set current to head
-        current = sentinel.getNext();
+        getHead();
         size++;
     }
 
     public void append(Polygon data) {
         // Set current to head
-        current = sentinel.getNext();
+        getHead();
 
         Node tempNode = new Node(data);
         tempNode.setNext(sentinel);
         tempNode.setPrevious(sentinel.getPrevious());
-
         sentinel.getPrevious().setNext(tempNode);
         sentinel.setPrevious(tempNode);
 
         // Set current to head
-        current = sentinel.getNext();
+        getHead();
         size++;
     }
 
-    public void insertInOrder(Polygon data, int maxSize)
-    {
-        current = sentinel.getNext();
-        int currSize = this.getSize();
-        if(size == 0){
-            this.prepend(data);
-        }
-        else
-        {
-            for(int i = 0; i < currSize; i++){
-                if(data.ComesBefore(current.getData())){
-                    Node tempNode = new Node(data);
-                    tempNode.setNext(current);
-                    tempNode.setPrevious(current.getPrevious());
-                    tempNode.getPrevious().setNext(tempNode);
-                    tempNode.getNext().setPrevious(tempNode);
-                    size++;
-                    return;
-                }
-                current = current.getNext();
-            }
-            this.append(data);
-        }
+    public void insert(Polygon data) {
+        Node tempNode = new Node(data);
+        tempNode.setNext(current);
+        tempNode.setPrevious(current.getPrevious());
+        tempNode.getPrevious().setNext(tempNode);
+        tempNode.getNext().setPrevious(tempNode);
+        size++;
     }
 
     public Polygon next() {
@@ -87,13 +70,56 @@ public class MyPolygons {
         current = sentinel;
     }
 
+    public Polygon remove(){
+        // Set current to head
+        getHead();
+        if (size > 0){
+            Polygon tempPolygon = current.getData();
+            current.getNext().setPrevious(sentinel);
+            sentinel.setNext(current.getNext());
+            current.setNext(null);
+            current.setPrevious(null);
+            getHead();
+            size--;
+            return tempPolygon;
+
+        }
+        // Return null when list is empty
+        return null;
+    }
+
+    public void insertInOrder(Polygon data) {
+        // Set current to head
+        getHead();
+        int currSize = this.getSize();
+
+        if(size == 0){
+            this.prepend(data);
+        }
+        else
+        {
+            for(int i = 0; i < currSize; i++){
+                if(data.ComesBefore(current.getData())){
+                    insert(data);
+                    return;
+                }
+                current = current.getNext();
+            }
+            this.append(data);
+        }
+    }
+
+    private void getHead() {
+        current = sentinel.getNext();
+    }
+
     public int getSize(){
         return size;
     }
 
     @Override
     public String toString() {
-        current = sentinel.getNext();
+        getHead();
         String myPolyToString = "";
         do{
             myPolyToString += current.getData() + "\n";

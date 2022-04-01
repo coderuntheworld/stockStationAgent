@@ -48,7 +48,7 @@ public class A1 {
             sortedPolygons.reset();
             for (int i = 0; i < myPolygonsSize; i++){
                 Polygon tempPolygon = myPolygons.next();
-                sortedPolygons.insertInOrder(tempPolygon, myPolygonsSize);
+                sortedPolygons.insertInOrder(tempPolygon);
             }
 
             // Print Unsorted and Sorted lists to console
